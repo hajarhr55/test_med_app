@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Landing_Page from './Components/Landing_Page/Landing_Page';
 import Navbar from './Components/Navbar/Navbar'; // Importing Navbar
+import InstantConsultation from './Components/InstantConsultation/InstantConsultation';
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
           {/* Add routes for Sign Up and Login pages */}
           <Route path="/signup" element={<div>Sign Up Page</div>} />
           <Route path="/login" element={<div>Login Page</div>} />
+          {/* Route for Instant Consultation */}
+          <Route path="/instant-consultation" element={<InstantConsultation />} />
         </Routes>
       </BrowserRouter>
     </div>
