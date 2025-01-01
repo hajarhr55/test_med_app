@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AppointmentForm from 'Components/AppointmentForm/AppointmentForm.js';
+import AppointmentForm from '../AppointmentForm/AppointmentForm.js';
 import './DoctorCard.css';
 
 const DoctorCard = ({ doctor }) => {
