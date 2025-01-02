@@ -1,0 +1,45 @@
+/* تنسيق حاوية الإشعار */
+.notification-container {
+  background-color: #f44336;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* تنسيق تفاصيل الموعد */
+.appointment-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-card__title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.appointment-card__message {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+/* زر الإغلاق */
+.close-button {
+  background-color: #fff;
+  color: #f44336;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.close-button:hover {
+  background-color: #f1f1f1;
+}
