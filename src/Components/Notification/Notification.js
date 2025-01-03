@@ -1,73 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
-import './Notification.css'; // تأكد من إضافة ملف CSS للتنسيق
+import './Notification.css'; // استيراد ملف الـ CSS
 
-// Function component Notification لعرض إشعارات المستخدم
+// Function component Notification to display user notifications
 const Notification = ({ children }) => {
-  // المتغيرات الحالة لإدارة بيانات المستخدم، وبيانات الطبيب، وبيانات الموعد
+  // State variables to manage user authentication, username, doctor data, and appointment data
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [doctorData, setDoctorData] = useState(null);
   const [appointmentData, setAppointmentData] = useState(null);
-  const [isVisible, setIsVisible] = useState(true); // حالة لإظهار أو إخفاء الإشعار
 
-  // useEffect hook لتنفيذ الآثار الجانبية في المكون
+  // useEffect hook to perform side effects in the component
   useEffect(() => {
-    // استرجاع البيانات المخزنة مثل اسم المستخدم، بيانات الطبيب، وبيانات الموعد
+    // Retrieve stored username, doctor data, and appointment data from sessionStorage and localStorage
     const storedUsername = sessionStorage.getItem('email');
     const storedDoctorData = JSON.parse(localStorage.getItem('doctorData'));
     const storedAppointmentData = JSON.parse(localStorage.getItem(storedDoctorData?.name));
 
-    // إذا كان يوجد اسم مستخدم مخزن، قم بتحديث الحالة
+    // Set isLoggedIn state to true and update username if storedUsername exists
     if (storedUsername) {
       setIsLoggedIn(true);
       setUsername(storedUsername);
     }
 
-    // إذا كانت بيانات الطبيب موجودة، قم بتحديث الحالة
+    // Set doctorData state if storedDoctorData exists
     if (storedDoctorData) {
       setDoctorData(storedDoctorData);
     }
 
-    // إذا كانت بيانات الموعد موجودة، قم بتحديث الحالة
+    // Set appointmentData state if storedAppointmentData exists
     if (storedAppointmentData) {
       setAppointmentData(storedAppointmentData);
     }
-  }, []); // يعتمد على أول تحميل للمكون
+  }, []); // Empty dependency array ensures useEffect runs only once after initial render
 
-  // دالة لإغلاق الإشعار عند النقر على زر "إغلاق"
-  const handleClose = () => {
-    setIsVisible(false);
-  };
-
-  // إذا كانت حالة الإشعار غير مرئية، إرجاع null (عدم عرض الإشعار)
-  if (!isVisible) return null;
-
+  // Return JSX elements to display Navbar, children components, and appointment details if user is logged in
   return (
     <div>
-      {/* عرض Navbar */}
-      <Navbar></Navbar>
-      {/* عرض الأطفال */}
+      {/* Render Navbar component */}
+      <Navbar />
+      {/* Render children components */}
       {children}
-      
-      {/* إذا كان المستخدم مسجلاً الدخول وبيانات الموعد موجودة */}
+      {/* Display appointment details if user is logged in and appointmentData is available */}
       {isLoggedIn && appointmentData && (
-        <div className="notification-container">
-          <div className="appointment-card">
-            <h3 className="appointment-card__title">Appointment Details</h3>
-            <p className="appointment-card__message">
-              <strong>User:</strong> {username}
-            </p>
-            <p className="appointment-card__message">
-              <strong>Doctor:</strong> {doctorData?.name}
-            </p>
-            <p className="appointment-card__message">
-              <strong>Date:</strong> {appointmentData?.date}
-            </p>
-            <p className="appointment-card__message">
-              <strong>Time:</strong> {appointmentData?.time}
-            </p>
-            <button onClick={handleClose} className="close-button">Close</button>
+        <div className="notification">
+          <div className="notification__container">
+            <h3>Appointment Details</h3>
+            <p><strong>Patient:</strong> {username}</p>
+            <p><strong>Doctor:</strong> {doctorData?.name}</p>
+            <p><strong>Specialty:</strong> {doctorData?.specialty}</p>
+            <p><strong>Appointment Date:</strong> {appointmentData?.date}</p>
+            <p><strong>Appointment Time:</strong> {appointmentData?.time}</p>
+            <button className="notification__cancel-button" onClick={() => setAppointmentData(null)}>Cancel Appointment</button>
           </div>
         </div>
       )}
@@ -75,5 +59,5 @@ const Notification = ({ children }) => {
   );
 };
 
-// تصدير المكون Notification للاستخدام في أماكن أخرى
+// Export Notification component for use in other parts of the application
 export default Notification;

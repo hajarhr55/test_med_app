@@ -1,45 +1,45 @@
-/* تنسيق حاوية الإشعار */
-.notification-container {
-  background-color: #f44336;
-  color: white;
-  padding: 15px;
-  border-radius: 5px;
+/* تحديد التنسيق العام للـ Notification */
+.notification {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 1000;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* تنسيق تفاصيل الموعد */
-.appointment-card {
-  background-color: #ffffff;
+  background-color: #f4f4f9;
   padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 300px;
 }
 
-.appointment-card__title {
+.notification__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.notification__container h3 {
   font-size: 18px;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
-.appointment-card__message {
-  font-size: 14px;
+.notification__container p {
   margin: 5px 0;
 }
 
-/* زر الإغلاق */
-.close-button {
-  background-color: #fff;
-  color: #f44336;
-  border: none;
-  padding: 5px 10px;
-  margin-top: 10px;
-  cursor: pointer;
-  border-radius: 3px;
+.notification__container strong {
+  font-weight: bold;
 }
 
-.close-button:hover {
-  background-color: #f1f1f1;
+.notification__cancel-button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #ff4757;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.notification__cancel-button:hover {
+  background-color: #e84118;
 }

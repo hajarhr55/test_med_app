@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoURI =  "mongodb://root:ouDjp33eNZB9hM4qA9xAkykI@172.21.120.193:27017";
+const mongoURI =  "mongodb://root:biNfDZq4BeGPuwtD4H8yi61t@172.21.139.25:27017";
 
 const connectToMongo = async (retryCount) => {
     const MAX_RETRIES = 3;
